@@ -1,0 +1,20 @@
+version: '3.8'
+services: 
+  api:
+    build: .
+    restart: always
+    ports: 
+      - "5020:5020"
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/test
+      - GMAIL_USER=currentrateusd@gmail.com
+      - GMAIL_PASS=idovstxbqihrgdfo
+      - PORT=5020
+    depends_on:
+      - mongo
+  
+  mongo: 
+    image: mongo
+    restart: always
+    ports:
+      - "27017:27017"
