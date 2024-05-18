@@ -12,7 +12,6 @@ services:
       - PORT=5020
     depends_on:
       - mongo
-  
   mongo: 
     image: mongo
     restart: always

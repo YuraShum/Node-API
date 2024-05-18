@@ -6,8 +6,8 @@ COPY ./server/package.json .
 
 RUN npm install
 
-COPY ./server ./
+COPY ./server .
 
 EXPOSE 5020
 
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "start"]
