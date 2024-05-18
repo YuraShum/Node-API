@@ -5,10 +5,9 @@ const rateHandler = async (currency) => {
 
     try {
         const res = await axios.get(CURRENT_RATE_URL)
-        console.log(res.data.rates[currency])
         return res.data.rates[currency]
-    } catch  {
-        
+    } catch {
+
     }
 
 }
