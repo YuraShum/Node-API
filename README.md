@@ -90,7 +90,7 @@ Create an `.env` file in the root of your project and add the environment variab
     Docker Compose will build the images and run the containers defined in your `docker-compose.yml` file. The server is running at `http://localhost:5020`.
 
 ## Description of the project structure
-![Project Structure](./server/photoREADME/Node-api.png)
+![Project Structure](./photoREADME/Node-api.png)
 
 ### `src/config`
 Contains configuration parameters for the program, among them: **CURRENT_RATE_URL** is used to record the ULR address of receiving the course, **emailMessagePattern** a message pattern that is sent to subscribers by mail.
