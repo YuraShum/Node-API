@@ -1,16 +1,16 @@
 # Node-API
 ## Introduction
-This project implements a reliable and efficient method of receiving and sending the exchange rate of the dollar against the hryvnia. Also developed API will allow you to get the current exchange rate, subscribe to email alerts and send mass emails to your subscribers.
+This project implements a reliable and efficient method of receiving and sending the exchange rate of the USD against the UAH. Also developed API will allow you to get the current exchange rate, subscribe to email alerts and send mass emails to your subscribers.
 
-### Особливості
+### Features
 - **Get current exchange rate**: <br>
-Implemented easy retrieval of the latest exchange rate for the specified currency. With the help of **rateHandler**, which accepts the parameter of the currency to be received, a request is made to a third-party service ['https://api.exchangerate-api.com/v4/latest/USD'](https://api.exchangerate-api.com/v4/latest/USD) from which you can get the dollar rate against UAH.
+Implemented easy retrieval of the latest exchange rate for the specified currency. With the help of **rateHandler**, which accepts the parameter of the currency to be received, a request is made to a third-party service ['https://api.exchangerate-api.com/v4/latest/USD'](https://api.exchangerate-api.com/v4/latest/USD) from which you can get the USD rate against UAH.
 - **E-mail subscription**: <br>
-Allows users to subscribe to receive a daily message to the specified mail with the current exchange rate of the dollar to the hryvnia. The **subscribeService** service has been implemented, in which the **createSubscribe** method has been created, which first checks whether this mail is already subscribed to the mailing of messages, if so, a response with a 409 code is returned, if this mail does not exist, a subscription is created.
+Allows users to subscribe to receive a daily message to the specified mail with the current exchange rate of the USD to the UAH. The **subscribeService** service has been implemented, in which the **createSubscribe** method has been created, which first checks whether this mail is already subscribed to the mailing of messages, if so, a response with a 409 code is returned, if this mail does not exist, a subscription is created.
 - **Sending email notifications**: <br>
 Implements mass email notifications to all subscribers with the latest exchange rate. Using the **emailService** service, in which the **sendEmails** method is implemented, which receives all signed emails from the database and calls **emailHandlers** to send a template message from config.js to all subscribers.
 
-## Uses of tenology
+## Stack
 
 - [Node.js](https://nodejs.org/)
 - [Express.js](https://expressjs.com/)
