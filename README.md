@@ -1,43 +1,43 @@
 # Node-API
-## Вступ
-У даному проекті реалізовано надійний та ефективний спосіб отримання та відправки курсу долара відносно гривні. Також розроблене API дозволить вам отримати поточний курс обміну, підписатися на сповіщення електронною поштою та надіслати масові листи своїм підписникам.
+## Introduction
+This project implements a reliable and efficient method of receiving and sending the exchange rate of the dollar against the hryvnia. Also developed API will allow you to get the current exchange rate, subscribe to email alerts and send mass emails to your subscribers.
 
 ### Особливості
-- **Отримати поточний обмінний курс**: <br>
-Реалізовано легке отримання останнього обмінного курсу для вказаної валюти. За допомогою **rateHandler** який приймає параметр валюти яку потрібно отримати, виконується запит на стороній сервіс ['https://api.exchangerate-api.com/v4/latest/USD'](https://api.exchangerate-api.com/v4/latest/USD) з якого можна отримати курс долара відносно UAH.
-- **Підписка на електронну пошту**: <br>
-Дозволяє користувачам підписуватись на отримання щоденного повідомлення на вказану пошту з актуальним курсом долара до гривні. Реалізовано сервіс **subscribeService** в якому створений метод **сreateSubscribe** який спочатку перевіряє чи чи дана пошта вже підписана на розсилку повідомлень, якщо так вертається відповідь із 409 кодом, якщо даної пошти немає створюється підписка.
-- **Надсилання сповіщень електронною поштою**: <br>
-Реалізовує масові сповіщення електронною поштою всім підписникам із останнім курсом валют. За допомогою сервісу **emailService** в якому реалізований метод **sendEmails** який отримує всі підписанні емейли із бази даних та викликає **emailHandlers** для відправики шаблонного повідомлення із config.js всім підписникам.
+- **Get current exchange rate**: <br>
+Implemented easy retrieval of the latest exchange rate for the specified currency. With the help of **rateHandler**, which accepts the parameter of the currency to be received, a request is made to a third-party service ['https://api.exchangerate-api.com/v4/latest/USD'](https://api.exchangerate-api.com/v4/latest/USD) from which you can get the dollar rate against UAH.
+- **E-mail subscription**: <br>
+Allows users to subscribe to receive a daily message to the specified mail with the current exchange rate of the dollar to the hryvnia. The **subscribeService** service has been implemented, in which the **createSubscribe** method has been created, which first checks whether this mail is already subscribed to the mailing of messages, if so, a response with a 409 code is returned, if this mail does not exist, a subscription is created.
+- **Sending email notifications**: <br>
+Implements mass email notifications to all subscribers with the latest exchange rate. Using the **emailService** service, in which the **sendEmails** method is implemented, which receives all signed emails from the database and calls **emailHandlers** to send a template message from config.js to all subscribers.
 
-## Використанні тенології
+## Uses of tenology
 
 - [Node.js](https://nodejs.org/)
 - [Express.js](https://expressjs.com/)
 - [Mongoose](https://mongoosejs.com/)
-- [Chai](https://www.chaijs.com/), [Mocha](https://mochajs.org/), [Nock](https://github.com/nock/nock) (для тестування)
-- [Axios](https://axios-http.com/) (для HTTP запитів)
-- [Nodemailer](https://nodemailer.com/) (для відправки повідомлень)
-- [Docker](https://www.docker.com/) (для контейнеризації)
+- [Chai](https://www.chaijs.com/), [Mocha](https://mochajs.org/),[Nock](https://github.com/nock/nock) (for testing)
+- [Axios](https://axios-http.com/) (for HTTP requests)
+- [Nodemailer](https://nodemailer.com/) (for sending messages)
+- [Docker](https://www.docker.com/) (for containerization)
 
-## Використання
+## Usage
 
-### Використання npm
+### Using npm
 
-1. **Клонування**
+1. **Cloning**
 
     ```sh
     git clone https://github.com/YuraShum/Node-API.git
     cd Node-API
     ```
-2. **Встановлення залежностей**
+2. **Installing dependencies**
 
     ```sh
     npm install
     ```
 
-3. **Налаштування змінних середовища**<br>
-Створіть файл `.env` у корені вашого проекту та додайте змінні середовища:
+3. **Setting environment variables**<br>
+Create an `.env` file in the root of your project and add the environment variables:
     ```env
     PORT = 
     MONGO_URL = 
@@ -47,31 +47,31 @@
     TEST_PORT = 
     ```
 
-4. **Запуск сервера**
+4. **Starting the server**
 
     ```sh
     npm run start
     npm run dev
     ```
 
-    Cервер повинен працювати `http://localhost:5020`.
+    The server should be running `http://localhost:5020`.
 
-5. **Запуск тестів**
+5. **Starting tests**
 
     ```sh
     npm run test
     ```
-### Використання Docker Compose
+### Using Docker Compose
 
-1. **Клонування**
+1. **Cloning**
 
     ```sh
     git clone https://github.com/YuraShum/Node-API.git
     cd Node-API
     ```
 
-2. **Налаштування змінних середовища**<br>
-Створіть файл `.env` у корені вашого проекту та додайте змінні середовища:
+2. **Setting environment variables**<br>
+Create an `.env` file in the root of your project and add the environment variables:
     ```env
     PORT = 
     MONGO_URL = 
@@ -81,67 +81,70 @@
     TEST_PORT = 
     ```
 
-3. **Створення та запуск контейнера**
+3. **Creating and running the container**
 
     ```sh
     docker-compose up --build
     ```
 
-    Docker Compose створить зображення та запустить контейнери, визначені у вашому файлі `docker-compose.yml`. Сервер працює на `http://localhost:5020`.
+    Docker Compose will build the images and run the containers defined in your `docker-compose.yml` file. The server is running at `http://localhost:5020`.
 
-## Опис стркткури проекту
+## Description of the project structure
 ![Project Structure](./server/photoREADME/Node-api.png)
 
 ### `src/config`
-Містить параметри конфігурації для програми серед них: **CURRENT_RATE_URL** слугує для запису ULR атреси отримання курсу, **emailMessagePattern** шаблон повідомлення яке відправляється підписникам на пошту.
+Contains configuration parameters for the program, among them: **CURRENT_RATE_URL** is used to record the ULR address of receiving the course, **emailMessagePattern** a message pattern that is sent to subscribers by mail.
 ### `src/controllers`
-Важлива структура яка відповідає за обробку запитів та розділення логіки від маршутів та моделей.
-- **currentRateControllers.js**<br>Обробляє запити, пов’язані з отриманням поточного обмінного курсу.
-- **emailControllers.js**<br> 
-Керує запитами, пов’язаними з електронною поштою а саме надсилає масові повідомлення на електронні пошти підписників.
-- **subscribeControllers.js**: 
-Керує запитами, пов’язаними з підпискою а саме додавання нових підписників.
-
+An important structure that is responsible for processing requests and separating logic from routes and models.
+- **currentRateControllers.js**<br>Handles requests related to getting the current exchange rate.
+- **emailControllers.js**<br>
+Manages e-mail related requests, namely sending bulk messages to subscribers' e-mails.
+- **subscribeControllers.js**:
+Manages subscription-related requests, namely adding new subscribers.
 ### `src/handlers`
 - **emailHandlers.js**:<br>
-Містить логіку для обробки надсилання електронної пошти,форматування та надсилання електронних листів через Nodemailer.
+Contains logic for handling email sending, formatting, and sending emails through Nodemailer.
 - **rateHandler.js**: <br>
-Містить логіку для отримання даних про обмінний курс.
+Contains logic to retrieve exchange rate data.
 - **responseHandlers.js**: <br>
-Містить логіку для формування відповідей в залежності від статусу.
+Contains logic for generating responses depending on the status.
 ### `src/models`
 - **subscribeModels.js**: <br>
-Визначає схему та модель Mongoose для підписників
+Defines the Mongoose schema and model for subscribers.
 ### `src/routes`
 - **mainRoutes.js**: <br>
-Визначає маршрути API та відображає їх у відповідних контролерах.
+Defines API routes and maps them to the appropriate controllers.
 ### `src/createServer.js`
-- Відповідає за створення та налаштування сервера Express.
+- Responsible for creating and configuring the Express server.
 ### `test`
 - **api.test.js**: <br>
-У даному файлі реалізовано тестування усіх кінцевих точок API.
+This file implements testing of all API endpoints.
 
-## Працездатність
-1. **Отримання курсу валюти**
+## Working capacity
+1. **Getting the exchange rate**
 
-   ![Project Structure](./server/photoREADME/GET_rate.png)
+   ![Project Structure](./photoREADME/GET_rate.png)
 
-2. **Валідне додання підписки**
+2. **Valid addition of subscription**
 
-   ![Project Structure](./server/photoREADME/POST_subscribe.png)
+   ![Project Structure](./photoREADME/POST_subscribe.png)
 
-3. **Відправка вже підписаної пошти**
+3. **Sending already signed mail**
 
-   ![Project Structure](./server/photoREADME/POST_subscribe_bed.png)
+   ![Project Structure](./photoREADME/POST_subscribe_bed.png)
 
-4. **Відправлення повідомлень на пошту**
+4. **Sending messages to mail**
 
-   ![Project Structure](./server/photoREADME/POST_sendEmails.png)
+   ![Project Structure](./photoREADME/POST_sendEmails.png)
 
-5. **База даних**
+5. **Database**
 
-   ![Project Structure](./server/photoREADME/db.png)
+   ![Project Structure](./photoREADME/db.png)
 
-6. **Результати виконання тестів**
+6. **The type of message sent to subscribers**
 
-   ![Project Structure](./server/photoREADME/test.png)
+    ![Project Structure](./photoREADME/sendMessage.png)
+
+7. **Test results**
+
+   ![Project Structure](./photoREADME/test.png)
